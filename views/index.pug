@@ -1,0 +1,82 @@
+extends layout
+
+block content
+    section
+        .container
+            h3 Todo list
+            .row
+                .col-lg-3
+                    .card
+                        .card-header.bg-info.text-white
+                            | Open
+                        .card-body
+                            form(method='POST')
+                                input.form-control.mb-2(type='text' name='title' placeholder='Task title')
+                                input.form-control.mb-2(type='date' name='dateTime')
+                                select.form-control.mb-2(name='owner')
+                                    option(value='') Hodimni tanlang
+                                    option(value='Vali') Vali
+                                    option(value='Ali') Ali
+                                    option(value='Salim') Salim
+                                select.form-control.mb-2(name='control')
+                                    option(value='') Choose one
+                                    option(value='Pending') Pending
+                                    option(value='Doing') Doing
+                                button.btn.btn-block.btn-success(type='submit')
+                                    | Saqlash
+                .col-lg-3
+                    .card
+                        .card-header.bg-warning.text-white
+                            | Pending
+                        each db in datas 
+                            if db.control == 'Pending'  
+                                .card-body
+                                    .border.px-2.py-3.my-2
+                                        h6= db.title
+                                        h6= db.dateTime.toDateString()
+                                        h6= db.owner
+
+                                    form(method="POST" action="/up/update/"+db.id )
+                                        select.form-control.mb-2.mt-lg-3(name='control')
+                                            option(value='') Choose
+                                            option(value='Doing') to Doing
+                                            option(value='Close') to Close
+                                        button.btn.btn-info.mr-2
+                                            i.fa.fa-check
+                                        a(href="/remove/"+db.id).btn.btn-danger.mr-2
+                                            i.fa.fa-trash
+
+                .col-lg-3
+                    .card
+                        .card-header.bg-dark.text-white
+                            | Doing
+                        each db in datas  
+                            if db.control == 'Doing'
+                                .card-body
+                                    .border.px-2.py-3.my-2
+
+                                        h6= db.title
+                                        h6= db.dateTime.toDateString()
+                                        h6= db.owner
+                                    form(method="POST" action="/up/update/"+db.id )
+                                        select.form-control.mb-2.mt-lg-3(name='control')
+                                            option(value='') Choose
+                                            option(value='Pending') to Pending 
+                                            option(value='Close')  to Close
+                                        button.btn.btn-info.mr-2
+                                            i.fa.fa-check
+                                        a(href="/remove/"+db.id).btn.btn-danger.mr-2
+                                            i.fa.fa-trash
+                .col-lg-3
+                    .card
+                        .card-header.bg-success.text-white
+                            | Close
+                        each db in datas  
+                            if db.control == 'Close'
+                                .card-body
+                                    .border.px-2.py-3.my-2
+                                        h6= db.title
+                                        h6= db.dateTime.toDateString()
+                                        h6= db.owner
+                                    a(href="/remove/"+db.id).btn.btn-danger.mr-2
+                                        i.fa.fa-trash
