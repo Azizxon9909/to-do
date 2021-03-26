@@ -3,7 +3,13 @@ extends layout
 block content
     section
         .container
-            h3 Todo list
+            .row.m-4
+                .col-lg-6 
+                    h2 TODO list
+                .col-lg-3.offset-lg-3
+                    button(class='btn btn-success')=user 
+                    a(href="/logout" class='btn btn-danger') LogOut
+
             .row
                 .col-lg-3
                     .card
@@ -14,16 +20,16 @@ block content
                                 input.form-control.mb-2(type='text' name='title' placeholder='Task title')
                                 input.form-control.mb-2(type='date' name='dateTime')
                                 select.form-control.mb-2(name='owner')
-                                    option(value='') Hodimni tanlang
+                                    option(value='') Choose employee
                                     option(value='Vali') Vali
                                     option(value='Ali') Ali
                                     option(value='Salim') Salim
                                 select.form-control.mb-2(name='control')
-                                    option(value='') Choose one
+                                    option(value='') Choose type
                                     option(value='Pending') Pending
                                     option(value='Doing') Doing
                                 button.btn.btn-block.btn-success(type='submit')
-                                    | Saqlash
+                                    | Save
                 .col-lg-3
                     .card
                         .card-header.bg-warning.text-white

@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    body
+        .row.mt-5
+            .col-md-6.m-auto
+                .card.card-body
+                    h1.text-center.mb-3
+                        i.fas.fa-user-plus
+                        |  Register
+                form( method='POST')
+                    .form-group
+                            input.form-control(type='text' class='mt-lg-2' name='email' aria-describedby='emailHelp' placeholder='email')
+                            input.form-control(type='text' class='mt-lg-2' name='username' aria-describedby='emailHelp' placeholder='username' )
+                            input.form-control(type='password' class='mt-lg-2' name='password' aria-describedby='emailHelp' placeholder='password')
+                            input.form-control(type='password' class='mt-lg-2' name='confirm' aria-describedby='emailHelp' placeholder='password confirm')
+
+                    button.btn.btn-primary.btn-block(type='submit')
+                        | Register
+                p.lead.mt-4
+                    | Have An Account? 
+                    a(href='/login') Login
+        .row.mt-3
+                .col-lg-6.offset-lg-3
+                    h2(style="font-size:30px; color: white")   
+                        != messages('message', locals)
+                        if errors
+                            each error in errors
+                                div(class="alert alert-danger") #{error.msg}            
+       

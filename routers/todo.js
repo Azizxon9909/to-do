@@ -10,10 +10,15 @@ router.get("/", (req, res) => {
       res.render("index", {
         title: "Bosh sahifa",
         datas: data,
+        user: req.user.username
       });
     }
   });
 });
+router.get('/aziz', (req,res)=>{
+
+  res.send(req.user)
+})
 
 router.post("/", (req, res) => {
   let db = new TodoSchema({

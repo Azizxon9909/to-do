@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    body
+        .row.mt-5
+            .col-md-6.m-auto
+                .card.card-body
+                    h1.text-center.mb-3
+                        i.fas.fa-sign-in-alt
+                        |   Login
+                form(action='/login' method='POST')
+                    .form-group
+                            input.form-control(type='text' class='mt-lg-2' name='username' aria-describedby='emailHelp' placeholder='username' )
+                            input.form-control(type='text' class='mt-lg-2' name='password' aria-describedby='emailHelp' placeholder='password')
+
+                    button.btn.btn-primary.btn-block(type='submit') Login
+                p.lead.mt-4
+                    | No Account? 
+                    a(href='/register') Register
+
+       
+        .row.mt-3
+                .col-lg-6.offset-lg-3
+                    h2(style="font-size:30px")   
+                        != messages('message', locals)
+                        if errors
+                            each error in errors
+                                div(class="alert alert-danger") #{error.msg}
+
+
