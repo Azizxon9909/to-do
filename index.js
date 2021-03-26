@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const port = 3000;
 const path = require("path");
 const app = express();
 const todo = require("./routers/todo");
@@ -90,6 +89,7 @@ const def = (req, res, next) => {
 app.use(rUser);
 app.use(def);
 app.use(todo);
+let port = process.env.PORT || '3000';
 app.listen(port, () => {
   console.log(`server http://localhost:${port}/ portda ishladi`);
 });
